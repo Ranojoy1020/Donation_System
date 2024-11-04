@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Directory for uploaded files
+public/userImages/
+public/ngoImages/
+public/donations/
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+
+# Build output
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.swp

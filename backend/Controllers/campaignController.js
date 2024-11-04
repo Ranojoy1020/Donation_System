@@ -1,0 +1,1 @@
+const campaignModel = require('../Models/campaignModel');
