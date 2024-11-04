@@ -12,9 +12,7 @@ pids/
 *.seed
 
 # Directory for uploaded files
-backend/public/userImages/
-backend/public/ngoImages/
-backend/public/donations/
+backend/public
 
 # Environment variables
 .env
