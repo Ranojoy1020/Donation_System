@@ -5,7 +5,7 @@ const { handleFile } = require('../middleware/fileHandler')
 const { verifyToken } = require('../middleware/auth')
 
 // * Importing Controllers
-const {register, login, updatePasswd, forgotPasswd, resetPasswd} = require('../Controllers/userController');
+const {register, login, updatePasswd, forgotPasswd, resetPasswd, updateProfile, submitQuery, userQuery} = require('../Controllers/userController');
 const { makeDonation, user_donationHistory } = require('../Controllers/donationController.js');
 
 const router = Router()
@@ -17,6 +17,9 @@ router
 .post('/register',handleFile('../public/userImages/', 'file') , register)
 .post('/login', login)
 .post('/update_passwd', verifyToken, updatePasswd)
+.put('/update_profile', updateProfile)
+.post('/submitQuery', submitQuery)
+.get('/userQuery/:id', userQuery)
 .post('/forgot_passwd', forgotPasswd)
 .post('/reset_passwd', resetPasswd)
 .post('/makeDonation', verifyToken, handleFile('../public/donations/', 'file'), makeDonation)
