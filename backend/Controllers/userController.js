@@ -97,7 +97,6 @@ module.exports.updateProfile = async (req, res) => {
       const {_id, user_fname, user_lname, user_email, user_mobile, user_addr, user_city, user_state, user_pincode, user_country } =
         req.body;
 
-      console.log(req.body);
       
       const user = await userModel.findByIdAndUpdate(
         _id,
@@ -121,6 +120,17 @@ module.exports.updateProfile = async (req, res) => {
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
+}
+
+module.exports.savePreference = async (req, res) => {
+  try {
+    const { user_id, preference } = req.body;
+    const user = await userModel.findByIdAndUpdate(user_id, { preference: preference }, { new: true });
+    res.status(200).json({ message : "Preferences Saved" , user : user})
+  }
+  catch(error){
+    res.status(400).json({ message : error.message })
+  }
 }
 
 module.exports.updatePasswd = async (req, res) => {

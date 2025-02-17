@@ -3,6 +3,8 @@ const userModel = require("../Models/userModel");
 const ngoModel = require("../Models/ngoModel");
 const queryModel = require("../Models/queryModel");
 
+const mailer = require('../middleware/mailer');
+
 const jwt = require("jsonwebtoken");
 
 module.exports.login = async (req, res) => {
@@ -117,6 +119,7 @@ module.exports.answerQuery = async (req, res) => {
       query.query_status = 'closed'
       await query.save();
       res.status(200).json({ message: "Query answered successfully" });
+      mailer.sendEmail(query.user_id, "Helping Hands Admin Repsonse.", answer)
     } else {
       res.status(404).json({ message: "Query not found" });
     }

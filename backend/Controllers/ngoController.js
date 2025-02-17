@@ -89,3 +89,45 @@ module.exports.login = async (req, res) => {
     }
 }
 
+module.exports.updateProfile = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const {
+        ngo_name,
+        ngo_email,
+        ngo_mobile,
+        ngo_address,
+        ngo_city,
+        ngo_state,
+        ngo_country,
+        ngo_web_url,
+        ngo_bk_name,
+        ngo_bk_accNo,
+        ngo_bk_ifsc,
+      } = req.body;
+
+      const user = await ngoModel.findOneAndUpdate(
+        { _id: id },
+        {
+          ngo_name: ngo_name,
+          ngo_email: ngo_email,
+          ngo_mobile: ngo_mobile,
+          ngo_address: ngo_address,
+          ngo_city: ngo_city,
+          ngo_state: ngo_state,
+          ngo_country: ngo_country,
+          ngo_web_url: ngo_web_url,
+          ngo_bk_name: ngo_bk_name,
+          ngo_bk_accNo: ngo_bk_accNo,
+          ngo_bk_ifsc: ngo_bk_ifsc,
+        },
+        { new: true }
+      );
+
+      res
+        .status(200)
+        .json({ message: "NGO Profile Updated Successfully", user: user });
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+}
